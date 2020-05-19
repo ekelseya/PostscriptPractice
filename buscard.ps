@@ -1,0 +1,99 @@
+%!PS
+%%Author: Eryn Kelsey-Adkins
+%%Class: CS 3210
+%%Project: PostScript
+%%Title: Business Card
+
+/border 
+%sets a border 3.5 x 2 (width of business card)
+{ newpath
+  0 0 moveto 
+  252 0 rlineto 
+  0 144 rlineto 
+  -252 0 rlineto
+  closepath
+  1 setlinewidth 
+  stroke
+} def
+
+/innerborder
+%draws a blue innerborder
+{ newpath
+  5 5 moveto 
+  242 0 rlineto 
+  0 134 rlineto 
+  -242 0 rlineto
+  closepath
+  2 setlinewidth
+  stroke
+} def
+
+/rotateinnerborder
+%draws a rotated inner border within the card
+{ newpath
+  0 0 moveto 
+  252 0 rlineto 
+  0 144 rlineto 
+  -252 0 rlineto
+  clip
+  1 rotate innerborder
+  -1 rotate
+} def
+
+/company
+%prints company information in the top left corner
+{ /Times-Roman findfont 10 scalefont setfont
+  15 125 moveto
+  (Metropolitan State University of Denver) show
+  /Times-Roman findfont 6 scalefont setfont
+  15 115 moveto
+  (Department of Mathematical and Computer Sciences) show
+  15 105 moveto
+  (Denver, Colorado  80204) show
+} def
+
+/myname
+% "centers" name on the card
+{ /Helvetica-Bold findfont 16 scalefont setfont 
+  5 0 moveto
+  (Eryn Kelsey-Adkins) stringwidth pop
+  242 exch sub 2 div 67 rmoveto
+  (Eryn Kelsey-Adkins) show
+} def
+
+/positiontitle
+% "centers" position on the card
+{ /Helvetica findfont 12 scalefont setfont 
+  0 0 moveto
+  (Student) stringwidth pop
+  242 exch sub 2 div 50 rmoveto
+  (Student) show
+} def
+
+/contact
+%prints contact information on the bottom right corner
+{  /Times-Roman findfont 8 scalefont setfont
+   ((720) 772-6886) stringwidth pop
+   242 exch sub 30 moveto
+   ((720) 772-6886) show
+   (ekelseya@msudenver.edu) stringwidth pop
+   242 exch sub 20 moveto
+   (ekelseya@msudenver.edu) show
+   (www.github.com/ekelseya) stringwidth pop
+   242 exch sub 10 moveto
+   (www.github.com/ekelseya) show
+} def
+
+72 432 translate
+border
+0 0 1 setrgbcolor
+innerborder
+0 1 1 setrgbcolor
+rotateinnerborder
+0 setgray
+company
+myname
+positiontitle
+contact
+
+showpage

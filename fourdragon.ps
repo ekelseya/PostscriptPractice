@@ -1,0 +1,48 @@
+%!PS
+%%Author: Eryn Kelsey-Adkins
+%%Class: CS 3210
+%%Project: PostScript
+%%Title: Four Dragons
+
+% Algorithm adapted from Kees van der Laan, 2013
+
+/dragon
+{/p 10 def %define order p
+ /b 90 def %define angle of curve 
+ /h 7 def %define scale
+ 0 0 moveto
+ h 0 lineto %the first piece 
+ 1 1 2 p exp 1 sub %calculate the remaining number of pieces (2^p - 1)
+ {/k exch def %n = k * 2m where k is an odd number. The direction of the nth turn [d(n)]:
+  {k cvi 2 mod 0 eq {/k k 2 div def} {exit} ifelse} loop %k is odd
+   k cvi 4 mod 1 eq {/d b neg def} {/d b def} ifelse %where d is the rotation for the next turn
+   %if k mod 4 = 1 then the nth turn is left, else the nth turn is right
+   d rotate h 0 rlineto
+ } for %n
+stroke 
+} def
+
+/doAuthor
+ %prints the author's name
+ %x position: 0, y position: 0
+{/Geneva findfont 10 scalefont setfont
+ 0 0 moveto
+ (Eryn Kelsey-Adkins) show
+} def
+
+36 756 translate
+doAuthor
+
+270 -360 translate
+0 0 1 setrgbcolor %blue
+dragon
+-90 rotate
+0 1 0 setrgbcolor %green
+dragon
+1 0 0 setrgbcolor %red
+dragon
+-90 rotate
+0 0 0 setrgbcolor %black
+dragon
+
+showpage

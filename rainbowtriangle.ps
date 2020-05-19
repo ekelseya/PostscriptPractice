@@ -1,0 +1,69 @@
+%!PS
+%%Author: Eryn Kelsey-Adkins
+%%Class: CS 3210
+%%Project: PostScript
+%%Title: Rainbow Triangles
+
+/doAuthor
+ %prints the author's name
+ %x position: 36, y position: 36
+{/Geneva findfont 10 scalefont setfont
+ 36 36 moveto
+ (Eryn Kelsey-Adkins) show
+} def
+
+/triangle
+%prints an equilateral triangle
+%len is the length of each side
+{/len exch def
+ 0 0 moveto
+ len 0 rlineto
+ 120 rotate
+ len 0 rlineto
+ 240 rotate
+ closepath
+ stroke} def
+ 
+
+/red {1.0 0.0 0.0 setrgbcolor} def
+/orange {1.0 0.7 0.0 setrgbcolor} def
+/yellow {1.0 1.0 0.0 setrgbcolor} def
+/green {0.0 1.0 0.0 setrgbcolor} def
+/blue {0.0 1.0 1.0 setrgbcolor} def
+/indigo {0.0 0.0 1.0 setrgbcolor} def
+/violet {0.7 0.3 1.0 setrgbcolor} def
+
+/x 198 def
+/y 180 def
+/h 360 def
+
+/rainbow
+{red h triangle
+ 2 rotate
+ /h h 8 sub def
+ orange h triangle
+ 2 rotate
+ /h h 8 sub def
+ yellow h triangle
+ 2 rotate
+ /h h 8 sub def
+ green h triangle
+ 2 rotate
+ /h h 8 sub def
+ blue h triangle
+ 2 rotate
+ /h h 8 sub def
+ indigo h triangle
+ 2 rotate
+ /h h 8 sub def
+ violet h triangle} def
+
+doAuthor
+
+newpath
+x y translate
+4 setlinewidth
+
+1 1 20 {rainbow} for
+
+showpage

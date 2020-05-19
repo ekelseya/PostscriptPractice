@@ -1,0 +1,77 @@
+%!PS
+%%Author: Eryn Kelsey-Adkins
+%%Class: CS 3210
+%%Project: PostScript
+%%Title: Smiley Faces
+
+/doCircleEyes
+%a function to make small circles for eyes
+%x position: 0, y position: 0, radius: 6
+{0 0 6 0 360 arc stroke} def
+
+/doCircleEyesFilled
+%a function to make small filled circles for eyes
+%x position: 0, y position: 0, radius: 6
+{0 0 6 0 360 arc fill} def
+
+/doSmile
+%a function to make an arc for a smile
+%x position: 0, y position: 0, radius: 60
+%arc starts at -150 and ends at -30
+{0 0 60 -150 -30 arc stroke} def
+
+/doFaceCircle
+%a full circle for the face
+%x position: 0, y position: 0, radius: 100
+{0 0 100 0 360 arc stroke} def
+
+/doFaceSquare
+%draws a 2 inch square filled with light blue
+%adds eyes and a smile
+%starting x position: 0, y position: 0
+{0 0 moveto
+ 0 144 rlineto
+ 144 0 rlineto
+ 0 -144 rlineto
+ -144 0 rlineto
+ closepath
+ 4 setlinewidth
+ 0 1 1 setrgbcolor
+ fill
+ 
+ 46 108 moveto
+ 18 -18 rlineto
+ -18 -18 rlineto
+ 4 setlinewidth
+ 0 setgray
+ stroke
+ 
+ 94 108 moveto
+ -18 -18 rlineto
+ 18 -18 rlineto
+ 4 setlinewidth
+ stroke
+ 
+ 70 80 60 -150 -30 arc stroke} def
+ 
+/doAuthor
+ %prints the author's name
+ %x position: 0, y position: 0
+{/Geneva findfont 10 scalefont setfont
+ 0 0 moveto
+ (Eryn Kelsey-Adkins) show
+} def
+ 
+144 150 translate doFaceCircle doSmile
+-30 30 translate doCircleEyes
+60 0 translate doCircleEyes
+
+72 150 translate 6 setlinewidth doSmile
+-24 35 translate 1.5 2.25 scale 2 setlinewidth doCircleEyesFilled
+35 0 translate doCircleEyesFilled
+
+36 20 translate 1 1 scale doFaceSquare
+
+-200 144 translate doAuthor
+
+showpage

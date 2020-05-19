@@ -1,0 +1,73 @@
+%!PS
+%%Author: Eryn Kelsey-Adkins
+%%Class: CS 3210
+%%Project: PostScript
+%%Title: Binary Tree
+
+/inch
+{72 mul} def
+
+/leftlabelnode
+%node with label to the left
+{/label exch def
+ 0 0 .5 inch 0 360 arc
+ gsave
+ .5 setgray fill
+ grestore stroke
+ -1.75 inch 0 moveto
+ label show } def
+ 
+/rightlabelnode
+%node with label to the right
+{/label exch def
+ 0 0 .5 inch 0 360 arc
+ gsave
+ .5 setgray fill
+ grestore stroke
+ 1 inch 0 moveto
+ label show } def
+ 
+/node
+%node without label
+{newpath
+ 0 0 .5 inch 0 360 arc
+ gsave
+ .5 setgray fill
+ grestore stroke } def
+ 
+/level2branch 
+%branches start at the center of the lower leftmost node
+{0 0 moveto
+ .75 inch 2 inch rlineto
+ .75 inch -2 inch rlineto
+ stroke } def
+ 
+/level1branch
+%branches start at the center of the lower leftmost node
+{0 0 moveto
+ 1.75 inch 2 inch rlineto
+ 1.75 inch -2 inch rlineto
+ stroke } def
+
+/doAuthor
+{/title exch def 
+ 0 0 moveto
+ (Author: Eryn Kelsey-Adkins) show
+ 0 -20 moveto
+ title show
+} def 
+
+/Geneva findfont 20 scalefont setfont
+
+1.75 inch 3 inch translate level2branch (Child) leftlabelnode
+1.5 inch 0 inch translate node
+2 inch 0 inch translate level2branch node
+1.5 inch 0 inch translate (Leaf) rightlabelnode
+-4.25 inch 2 inch translate level1branch (Parent) leftlabelnode
+3.5 inch 0 inch translate node
+-1.75 inch 2 inch translate (Root) rightlabelnode
+-3.5 inch 2 inch translate (Binary Tree) doAuthor
+
+
+
+showpage
